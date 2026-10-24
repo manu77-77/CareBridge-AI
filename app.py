@@ -91,8 +91,9 @@ if go:
                     response = client.models.generate_content(model="gemini-3.8-flash", contents=prompt_for(text))
                     st.session_state.result = parse_json(response.text or "")
             except Exception as e:
-                st.error("The AI request failed. Check internet access, API key, and model availability.")
-                st.caption(type(e).__name__)
+                st.error("The AI request failed.")
+                st.error(f"Error type: {type(e).__name__}")
+                st.code(str(e))
 
 
 result = st.session_state.get("result")
